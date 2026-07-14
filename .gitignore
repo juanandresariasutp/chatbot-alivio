@@ -1,0 +1,30 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+.venv/
+venv/
+
+# Build and test output
+dist/
+build/
+coverage/
+.pytest_cache/
+
+# Logs and local data
+*.log
+*.sqlite
+*.sqlite3
+data/
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+
+# Temporary n8n artifacts
+workflows/private/
+
