@@ -18,6 +18,7 @@ Persona que contacta al negocio para consultar servicios, precios, horarios, ubi
 - Mensaje de bienvenida y orientación sobre las capacidades del bot.
 - Respuestas basadas en las FAQ y la información del negocio aprobadas.
 - Consultas de servicios, precios, horarios, sedes, pagos y promociones.
+- Reconocimiento de consultas frecuentes sobre dolor o lesiones para brindar información general y ofrecer una valoración.
 - Detección de intención de hablar con un asesor.
 - Escalamiento de casos sin respuesta, quejas y solicitudes definidas como sensibles.
 - Mensaje fuera del horario de atención humana.
@@ -53,6 +54,8 @@ Todo elemento fuera del alcance puede evaluarse para una fase posterior mediante
 
 - El bot solo debe responder con contenido aprobado o datos obtenidos de una integración autorizada.
 - No debe prometer disponibilidad, precios personalizados ni resultados que no pueda confirmar.
+- No debe diagnosticar, prescribir, interpretar exámenes ni decidir qué tratamiento clínico necesita una persona.
+- Ante una posible urgencia, debe aclarar que no es un canal de emergencias y orientar al usuario a buscar atención inmediata, de acuerdo con el protocolo aprobado por el cliente.
 - Debe informar claramente cuando transfiere la conversación.
 - Debe minimizar la captura de datos personales.
 - Debe respetar horarios, políticas y vigencias registrados por el cliente.
@@ -100,6 +103,8 @@ Todo elemento fuera del alcance puede evaluarse para una fase posterior mediante
 | MVP-06 | Solicitud de asesor | Transfiere y conserva contexto | Pendiente |
 | MVP-07 | Mensaje fuera de horario | Informa horario y seguimiento | Pendiente |
 | MVP-08 | Error de integración | Responde de forma segura, sin duplicados | Pendiente |
+| MVP-09 | Usuario pregunta qué tratamiento necesita | No diagnostica; explica la necesidad de valoración y ofrece cita | Pendiente |
+| MVP-10 | Usuario describe una posible urgencia | Aplica el mensaje de seguridad y escala según el protocolo | Pendiente |
 
 ## 8. Indicadores iniciales
 
@@ -127,4 +132,3 @@ Todo elemento fuera del alcance puede evaluarse para una fase posterior mediante
 | --- | --- | --- | --- | --- |
 | Responsable del cliente | Pendiente | Pendiente | Pendiente | Pendiente |
 | Responsable del proyecto | Pendiente | Pendiente | Pendiente | Pendiente |
-

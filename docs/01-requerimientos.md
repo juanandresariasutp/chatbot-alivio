@@ -21,7 +21,7 @@ Definir la información, las reglas y las dependencias necesarias para construir
 
 | Canal | Incluido | Cuenta o identificador | Observaciones |
 | --- | --- | --- | --- |
-| WhatsApp | Por definir | Pendiente | Canal principal propuesto |
+| WhatsApp | Sí | Número pendiente | Canal principal del MVP |
 | Instagram | Por definir | Pendiente | Debe ser una cuenta profesional |
 | Facebook Messenger | Por definir | Pendiente | Requiere una página de Facebook |
 
@@ -39,10 +39,10 @@ Definir la información, las reglas y las dependencias necesarias para construir
 
 ### Tono de comunicación
 
-- Personalidad de marca: Pendiente.
-- Tratamiento al usuario (tú/usted): Pendiente.
-- Nivel de formalidad: Pendiente.
-- Uso de emojis: Pendiente.
+- Personalidad de marca: cercana, empática, profesional y orientada al bienestar.
+- Tratamiento al usuario (tú/usted): tú.
+- Nivel de formalidad: cordial y claro, sin tecnicismos innecesarios.
+- Uso de emojis: moderado, principalmente en saludos y listas informativas.
 - Palabras o temas que se deben evitar: Pendiente.
 - Idiomas requeridos: Pendiente.
 
@@ -55,9 +55,11 @@ La conversación debe escalarse cuando ocurra al menos una condición aprobada p
 - Hay una queja, reclamo, devolución o situación sensible.
 - La solicitud requiere confirmar disponibilidad, agendar, cobrar o consultar datos privados.
 - Se detecta una urgencia definida por el negocio.
+- El usuario solicita diagnóstico, prescripción o una recomendación clínica individual que requiera valoración profesional.
 - Otro caso: Pendiente.
 
-Horario de atención humana: Pendiente.  
+Horario de atención humana: lunes a viernes, 8:00 a. m.–12:00 p. m. y 2:00–5:00 p. m.; martes y jueves, última cita a las 6:45 p. m.
+
 Canal o mecanismo de notificación al asesor: Pendiente.  
 Tiempo de respuesta esperado: Pendiente.
 
@@ -65,7 +67,9 @@ Tiempo de respuesta esperado: Pendiente.
 
 ### Bienvenida
 
-Pendiente.
+¡Hola! 😊 Gracias por comunicarte con ALIVIO 360.
+
+Nos especializamos en el tratamiento del dolor y la recuperación funcional mediante un enfoque integral y personalizado. Puedo brindarte información sobre nuestros servicios, tarifas, horarios, ubicación y ayudarte a solicitar una cita.
 
 ### Fuera de horario
 
@@ -73,11 +77,11 @@ Pendiente.
 
 ### Transferencia a un asesor
 
-Pendiente.
+Voy a compartir tu solicitud con un asesor para que pueda orientarte y confirmar la disponibilidad. Por favor indícame tu nombre, el motivo de consulta y el día y horario de preferencia.
 
 ### Información no disponible
 
-Pendiente.
+No tengo información suficiente para responderte con seguridad. Si deseas, puedo compartir tu consulta con un asesor de ALIVIO 360.
 
 ## 7. Datos y privacidad
 
@@ -127,6 +131,5 @@ No se deben solicitar ni almacenar datos sensibles hasta que el cliente apruebe 
 - [ ] Se verificó la cuenta profesional de Instagram.
 - [ ] Se verificó Meta Business.
 - [ ] Se definió quién será propietario de n8n.
-- [ ] Se recibió la información básica del negocio.
+- [x] Se recibió la información básica del negocio; falta aprobación formal.
 - [ ] Se definió un responsable del cliente.
-

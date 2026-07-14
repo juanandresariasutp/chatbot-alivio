@@ -15,6 +15,7 @@ No se han configurado credenciales ni integraciones. Los campos marcados como `P
 3. [Información del negocio](docs/03-informacion-negocio.md)
 4. [Preguntas frecuentes](docs/04-preguntas-frecuentes.md)
 5. [Alcance del MVP](docs/05-alcance-mvp.md)
+6. [Pendientes para cerrar el Día 1](docs/06-pendientes-dia-1.md)
 
 ## Cómo completar el Día 1
 
@@ -46,4 +47,3 @@ No se han configurado credenciales ni integraciones. Los campos marcados como `P
 ## Siguiente hito
 
 Una vez aprobado el Día 1, el siguiente paso es diseñar la arquitectura y los flujos conversacionales a partir de información real y validada.
-
