@@ -4,7 +4,7 @@ Proyecto para diseñar e implementar un chatbot de atención al cliente, inicial
 
 ## Estado
 
-**Fase actual:** Día 1 — levantamiento de información y preparación.
+**Fase actual:** Día 4 — integración con WhatsApp.
 
 No se han configurado credenciales ni integraciones. Los campos marcados como `Pendiente` deben completarse y aprobarse con el cliente antes de desarrollar o publicar el bot.
 
@@ -16,6 +16,13 @@ No se han configurado credenciales ni integraciones. Los campos marcados como `P
 4. [Preguntas frecuentes](docs/04-preguntas-frecuentes.md)
 5. [Alcance del MVP](docs/05-alcance-mvp.md)
 6. [Pendientes para cerrar el Día 1](docs/06-pendientes-dia-1.md)
+7. [Flujo conversacional](docs/07-flujo-conversacional.md)
+8. [Catálogo de respuestas](docs/08-catalogo-respuestas.md)
+9. [Pruebas conversacionales](docs/09-pruebas-conversacionales.md)
+10. [Arquitectura técnica del Día 3](docs/10-arquitectura-dia-3.md)
+11. [Normalización y clasificación](docs/11-normalizacion-y-clasificacion.md)
+12. [Webhook de prueba local](docs/12-webhook-prueba-local.md)
+13. [Integración con WhatsApp](docs/13-integracion-whatsapp.md)
 
 ## Cómo completar el Día 1
 
@@ -44,6 +51,20 @@ No se han configurado credenciales ni integraciones. Los campos marcados como `P
 - Anonimizar cualquier evidencia de prueba antes de versionarla.
 - Revisar los flujos exportados de n8n antes de hacer commit.
 
+## Pruebas locales
+
+Ejecutar las pruebas de reglas y webhook simulado:
+
+```bash
+npm test
+```
+
+Levantar el webhook local de prueba:
+
+```bash
+npm start
+```
+
 ## Siguiente hito
 
-Una vez aprobado el Día 1, el siguiente paso es diseñar la arquitectura y los flujos conversacionales a partir de información real y validada.
+Una vez validada la integración simulada de WhatsApp, el siguiente paso es configurar la URL pública HTTPS en Meta y probar con el número autorizado.

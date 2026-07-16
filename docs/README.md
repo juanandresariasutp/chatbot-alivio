@@ -8,6 +8,13 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 4. Aprobar preguntas y respuestas frecuentes.
 5. Aprobar el alcance y los criterios de aceptación del MVP.
 6. Resolver la lista consolidada de pendientes del Día 1.
+7. Diseñar y aprobar el flujo conversacional del Día 2.
+8. Preparar catálogo de respuestas para automatización.
+9. Definir pruebas conversacionales mínimas.
+10. Diseñar arquitectura técnica y estructura de workflows del Día 3.
+11. Definir normalización y clasificación inicial.
+12. Probar webhook local simulado.
+13. Preparar integración de WhatsApp.
 
 ## Índice
 
@@ -17,6 +24,13 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 - [Preguntas frecuentes](04-preguntas-frecuentes.md)
 - [Alcance del MVP](05-alcance-mvp.md)
 - [Pendientes para cerrar el Día 1](06-pendientes-dia-1.md)
+- [Flujo conversacional](07-flujo-conversacional.md)
+- [Catálogo de respuestas](08-catalogo-respuestas.md)
+- [Pruebas conversacionales](09-pruebas-conversacionales.md)
+- [Arquitectura técnica del Día 3](10-arquitectura-dia-3.md)
+- [Normalización y clasificación](11-normalizacion-y-clasificacion.md)
+- [Webhook de prueba local](12-webhook-prueba-local.md)
+- [Integración con WhatsApp](13-integracion-whatsapp.md)
 
 ## Convenciones
 
