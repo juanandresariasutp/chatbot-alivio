@@ -17,6 +17,7 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 13. Preparar integración de WhatsApp.
 14. Guiar configuración de Meta y WhatsApp.
 15. Registrar evidencias de pruebas de WhatsApp.
+16. Preparar integración de Instagram.
 
 ## Índice
 
@@ -35,6 +36,7 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 - [Integración con WhatsApp](13-integracion-whatsapp.md)
 - [Checklist Meta y WhatsApp](14-checklist-meta-whatsapp.md)
 - [Evidencias de pruebas WhatsApp](15-evidencias-whatsapp.md)
+- [Integración con Instagram](16-integracion-instagram.md)
 
 ## Convenciones
 

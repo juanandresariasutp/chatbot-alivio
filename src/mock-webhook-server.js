@@ -3,10 +3,13 @@ const { processPayload } = require("./chatbot-rules");
 const { getResponse } = require("./responses");
 const { normalizeWhatsAppPayload } = require("./whatsapp-normalizer");
 const { sendWhatsAppTextMessage } = require("./whatsapp-client");
+const { normalizeInstagramPayload } = require("./instagram-normalizer");
+const { sendInstagramTextMessage } = require("./instagram-client");
 
 const PORT = Number(process.env.PORT || 3000);
 const WEBHOOK_VERIFY_TOKEN = process.env.WEBHOOK_VERIFY_TOKEN || "local_verify_token";
 const SEND_WHATSAPP_REPLIES = process.env.SEND_WHATSAPP_REPLIES === "true";
+const SEND_INSTAGRAM_REPLIES = process.env.SEND_INSTAGRAM_REPLIES === "true";
 
 function sendJson(res, statusCode, body) {
   res.writeHead(statusCode, {
@@ -47,6 +50,21 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (req.method === "GET" && url.pathname === "/webhook/whatsapp") {
+    const mode = url.searchParams.get("hub.mode");
+    const token = url.searchParams.get("hub.verify_token");
+    const challenge = url.searchParams.get("hub.challenge");
+
+    if (mode === "subscribe" && token === WEBHOOK_VERIFY_TOKEN && challenge) {
+      res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+      res.end(challenge);
+      return;
+    }
+
+    sendJson(res, 403, { error: "Webhook verification failed" });
+    return;
+  }
+
+  if (req.method === "GET" && url.pathname === "/webhook/instagram") {
     const mode = url.searchParams.get("hub.mode");
     const token = url.searchParams.get("hub.verify_token");
     const challenge = url.searchParams.get("hub.challenge");
@@ -105,6 +123,50 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  if (req.method === "POST" && url.pathname === "/webhook/instagram") {
+    try {
+      const payload = await readBody(req);
+      const normalized = normalizeInstagramPayload(payload);
+
+      if (normalized.ignored) {
+        sendJson(res, 200, {
+          ok: true,
+          ignored: true,
+          reason: normalized.reason
+        });
+        return;
+      }
+
+      const result = processPayload(normalized);
+      const responseText = getResponse(result.classification.response_id);
+      const reply = {
+        channel: "instagram",
+        external_user_id: result.normalized.external_user_id,
+        text: responseText,
+        sent: false
+      };
+
+      if (SEND_INSTAGRAM_REPLIES) {
+        await sendInstagramTextMessage({
+          recipientId: result.normalized.external_user_id,
+          text: responseText
+        });
+        reply.sent = true;
+      }
+
+      sendJson(res, 200, {
+        ...result,
+        reply
+      });
+    } catch (error) {
+      sendJson(res, 400, {
+        error: "Invalid Instagram webhook payload",
+        details: error.message
+      });
+    }
+    return;
+  }
+
   if (req.method !== "POST" || url.pathname !== "/webhook/test-message") {
     sendJson(res, 404, {
       error: "Not found",
@@ -112,7 +174,9 @@ const server = http.createServer(async (req, res) => {
         "GET /health",
         "POST /webhook/test-message",
         "GET /webhook/whatsapp",
-        "POST /webhook/whatsapp"
+        "POST /webhook/whatsapp",
+        "GET /webhook/instagram",
+        "POST /webhook/instagram"
       ]
     });
     return;
@@ -145,4 +209,6 @@ server.listen(PORT, () => {
   console.log(`Test webhook: POST http://localhost:${PORT}/webhook/test-message`);
   console.log(`WhatsApp verify: GET http://localhost:${PORT}/webhook/whatsapp`);
   console.log(`WhatsApp webhook: POST http://localhost:${PORT}/webhook/whatsapp`);
+  console.log(`Instagram verify: GET http://localhost:${PORT}/webhook/instagram`);
+  console.log(`Instagram webhook: POST http://localhost:${PORT}/webhook/instagram`);
 });

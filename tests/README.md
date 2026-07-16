@@ -16,3 +16,17 @@ node tests/run-conversation-tests.js
 node tests/run-mock-webhook-test.js
 ```
 
+## Ejecutar pruebas de WhatsApp
+
+```bash
+node tests/run-whatsapp-tests.js
+node tests/run-whatsapp-webhook-test.js
+```
+
+## Ejecutar pruebas de Instagram
+
+```bash
+node tests/run-instagram-tests.js
+node tests/run-instagram-webhook-test.js
+```
+

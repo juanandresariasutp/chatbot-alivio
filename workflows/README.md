@@ -16,6 +16,8 @@ Antes de guardar un flujo:
 ```text
 workflows/
 ├── shared/         # Lógica común del chatbot
+├── whatsapp/       # Integración de WhatsApp
+├── instagram/      # Integración de Instagram
 ├── test-payloads/  # Eventos simulados para pruebas
 └── private/        # Archivos locales no versionados
 ```

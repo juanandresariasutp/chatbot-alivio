@@ -4,7 +4,7 @@ Proyecto para diseñar e implementar un chatbot de atención al cliente, inicial
 
 ## Estado
 
-**Fase actual:** Día 4 — integración con WhatsApp.
+**Fase actual:** Día 5 — integración con Instagram.
 
 No se han configurado credenciales ni integraciones. Los campos marcados como `Pendiente` deben completarse y aprobarse con el cliente antes de desarrollar o publicar el bot.
 
@@ -25,6 +25,7 @@ No se han configurado credenciales ni integraciones. Los campos marcados como `P
 13. [Integración con WhatsApp](docs/13-integracion-whatsapp.md)
 14. [Checklist Meta y WhatsApp](docs/14-checklist-meta-whatsapp.md)
 15. [Evidencias de pruebas WhatsApp](docs/15-evidencias-whatsapp.md)
+16. [Integración con Instagram](docs/16-integracion-instagram.md)
 
 ## Cómo completar el Día 1
 
@@ -69,4 +70,4 @@ npm start
 
 ## Siguiente hito
 
-Una vez validada la integración simulada de WhatsApp, el siguiente paso es configurar la URL pública HTTPS en Meta y probar con el número autorizado.
+Una vez validada la integración simulada de Instagram, el siguiente paso es configurar la URL pública HTTPS en Meta y probar con cuentas autorizadas.

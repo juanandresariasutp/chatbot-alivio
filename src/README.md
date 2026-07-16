@@ -9,6 +9,8 @@ Esta carpeta contiene componentes propios del chatbot que no pertenecen directam
 - `mock-webhook-server.js`: servidor local para probar el flujo con payloads simulados.
 - `whatsapp-normalizer.js`: convierte eventos de WhatsApp Cloud API al formato común del bot.
 - `whatsapp-client.js`: prepara y envía respuestas de texto por WhatsApp Cloud API cuando existan credenciales.
+- `instagram-normalizer.js`: convierte eventos de Instagram Messaging al formato común del bot.
+- `instagram-client.js`: prepara y envía respuestas de texto por Instagram Messaging API cuando existan credenciales.
 
 ## Uso
 
