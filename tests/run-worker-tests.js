@@ -2,6 +2,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const { handleWorkerRequest } = require("../src/worker");
+const { MockD1Database } = require("./mock-d1");
 
 function readPayload(fileName) {
   return JSON.parse(
@@ -18,7 +19,8 @@ async function readJsonResponse(response) {
 
 async function main() {
   const env = {
-    WEBHOOK_VERIFY_TOKEN: "worker_test_token"
+    WEBHOOK_VERIFY_TOKEN: "worker_test_token",
+    DB: new MockD1Database()
   };
 
   const healthResponse = await handleWorkerRequest(
@@ -62,6 +64,7 @@ async function main() {
   assert.equal(whatsappBody.classification.intent, "agendamiento");
   assert.equal(whatsappBody.reply.channel, "whatsapp");
   assert.equal(whatsappBody.reply.sent, false);
+  assert.equal(whatsappBody.conversation.messages.length, 2);
 
   const instagramPayload = readPayload("instagram-message-text.json");
   const instagramResponse = await handleWorkerRequest(
@@ -79,6 +82,7 @@ async function main() {
   assert.equal(instagramBody.classification.intent, "servicios");
   assert.equal(instagramBody.reply.channel, "instagram");
   assert.equal(instagramBody.reply.sent, false);
+  assert.equal(instagramBody.conversation.messages.length, 2);
 
   console.log("Worker handler tests passed");
 }

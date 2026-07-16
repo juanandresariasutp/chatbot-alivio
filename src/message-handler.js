@@ -5,7 +5,7 @@ const { buildAdvisorSummary, getNextStatus, shouldHandoff } = require("./handoff
 
 const defaultStore = new ConversationStore();
 
-function handleNormalizedMessage(normalized, { store = defaultStore } = {}) {
+async function handleNormalizedMessage(normalized, { store = defaultStore } = {}) {
   if (normalized.ignored) {
     return {
       ok: true,
@@ -14,7 +14,7 @@ function handleNormalizedMessage(normalized, { store = defaultStore } = {}) {
     };
   }
 
-  if (store.hasProcessedEvent(normalized.event_id)) {
+  if (await store.hasProcessedEvent(normalized.event_id)) {
     return {
       ok: true,
       ignored: true,
@@ -22,10 +22,10 @@ function handleNormalizedMessage(normalized, { store = defaultStore } = {}) {
     };
   }
 
-  const existingConversation = store.getOrCreateConversation(normalized);
+  const existingConversation = await store.getOrCreateConversation(normalized);
 
   if (existingConversation.status === STATUSES.HUMAN_ACTIVE) {
-    store.markProcessedEvent(normalized.event_id);
+    await store.markProcessedEvent(normalized.event_id, normalized);
     return {
       ok: true,
       ignored: true,
@@ -36,15 +36,15 @@ function handleNormalizedMessage(normalized, { store = defaultStore } = {}) {
 
   const result = processPayload(normalized);
   const responseText = getResponse(result.classification.response_id);
-  const conversation = store.addMessage(result.normalized, result.classification);
-  store.setStatus(result.normalized, getNextStatus(result.classification));
-  store.markProcessedEvent(result.normalized.event_id);
+  await store.addMessage(result.normalized, result.classification);
+  await store.setStatus(result.normalized, getNextStatus(result.classification));
+  await store.markProcessedEvent(result.normalized.event_id, result.normalized);
 
   if (result.classification.next_status !== STATUSES.ERROR) {
-    store.addReply(result.normalized, responseText);
+    await store.addReply(result.normalized, responseText);
   }
 
-  const updatedConversation = store.getOrCreateConversation(result.normalized);
+  const updatedConversation = await store.getOrCreateConversation(result.normalized);
 
   return {
     ...result,

@@ -20,17 +20,21 @@ https://chatbot.alivio-360boy.workers.dev
 | CF-004 | `POST /webhook/whatsapp` con payload simulado de texto | `200`, clasifica `agendamiento` |
 | CF-005 | `POST /webhook/instagram` con payload simulado de texto | `200`, clasifica `servicios` |
 | CF-006 | `POST /webhook/whatsapp` con evento de estado | `200`, ignora `status_event` |
+| CF-007 | `POST /webhook/whatsapp` con D1 activo | `200`, registra conversación y mensajes |
+| CF-008 | Consulta D1 remota | 1 conversación, 2 mensajes, 1 evento procesado |
 
 ## Notas
 
 - Las pruebas se ejecutaron con payloads simulados del repositorio.
 - El envío real hacia WhatsApp e Instagram sigue desactivado.
 - Los tokens reales de Meta todavía no están configurados.
-- La persistencia durable en D1 está creada, pero el handler actual sigue usando la capa de estado en memoria para la lógica inmediata.
+- La persistencia durable en D1 está conectada al Worker cuando existe el binding `env.DB`.
+- El Worker desplegado ya registró datos de prueba en D1 remoto.
 
 ## Pendientes
 
-- [ ] Conectar el handler del Worker a D1 para persistencia durable real.
+- [x] Conectar el handler del Worker a D1 para persistencia durable real.
+- [x] Verificar escrituras reales en D1 remoto.
 - [ ] Configurar secretos reales de Meta.
 - [ ] Configurar webhooks reales en Meta Developers.
 - [ ] Probar con usuarios autorizados.

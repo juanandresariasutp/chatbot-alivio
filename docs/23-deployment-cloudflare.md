@@ -39,6 +39,26 @@ Endpoints verificados:
 | `GET /webhook/whatsapp` con token correcto | devuelve `hub.challenge` |
 | `GET /webhook/instagram` con token incorrecto | `403` |
 
+## Persistencia D1
+
+El Worker usa `env.DB` cuando el binding D1 está disponible. En pruebas locales se mantiene un mock o memoria para no depender de Cloudflare.
+
+Tablas usadas:
+
+- `conversations`
+- `messages`
+- `processed_events`
+- `handoffs`
+- `errors`
+
+Verificación remota realizada:
+
+```text
+conversations: 1
+messages: 2
+processed_events: 1
+```
+
 ## Variables necesarias
 
 | Variable | Uso |

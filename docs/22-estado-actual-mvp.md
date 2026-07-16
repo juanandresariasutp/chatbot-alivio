@@ -75,6 +75,8 @@ La suite cubre:
 - [x] Desplegar Worker desde el repositorio.
 - [x] Verificar `/health` público.
 - [x] Configurar `WEBHOOK_VERIFY_TOKEN` como secreto.
+- [x] Conectar Worker a D1 para persistencia durable.
+- [x] Verificar escritura real en D1 remoto.
 - [ ] Configurar webhooks reales en Meta.
 - [ ] Probar con usuarios autorizados.
 
@@ -97,4 +99,4 @@ La siguiente fase debería enfocarse en:
 3. Configurar webhooks reales en Meta.
 4. Probar recepción de mensajes reales.
 5. Activar envío real solo después de validar con usuarios autorizados.
-6. Reemplazar la persistencia en memoria por almacenamiento durable.
+6. Probar almacenamiento durable con conversaciones reales.

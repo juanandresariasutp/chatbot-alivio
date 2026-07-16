@@ -99,7 +99,7 @@ const server = http.createServer(async (req, res) => {
         return;
       }
 
-      const result = handleNormalizedMessage(normalized);
+      const result = await handleNormalizedMessage(normalized);
 
       if (result.ignored) {
         sendJson(res, 200, result);
@@ -148,7 +148,7 @@ const server = http.createServer(async (req, res) => {
         return;
       }
 
-      const result = handleNormalizedMessage(normalized);
+      const result = await handleNormalizedMessage(normalized);
 
       if (result.ignored) {
         sendJson(res, 200, result);
@@ -201,7 +201,7 @@ const server = http.createServer(async (req, res) => {
 
   try {
     const payload = await readBody(req);
-    const result = handleNormalizedMessage(payload);
+    const result = await handleNormalizedMessage(payload);
 
     sendJson(res, 200, {
       ...result,

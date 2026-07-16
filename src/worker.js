@@ -1,6 +1,7 @@
 const { handleNormalizedMessage } = require("./message-handler");
 const { normalizeWhatsAppPayload } = require("./whatsapp-normalizer");
 const { normalizeInstagramPayload } = require("./instagram-normalizer");
+const { D1ConversationStore } = require("./d1-conversation-store");
 
 function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body, null, 2), {
@@ -44,9 +45,13 @@ async function readJson(request) {
   }
 }
 
-async function handleTestMessage(request) {
+function getStore(env = {}) {
+  return env.DB ? new D1ConversationStore(env.DB) : undefined;
+}
+
+async function handleTestMessage(request, env) {
   const payload = await readJson(request);
-  const result = handleNormalizedMessage(payload);
+  const result = await handleNormalizedMessage(payload, { store: getStore(env) });
 
   return jsonResponse({
     ...result,
@@ -59,10 +64,10 @@ async function handleTestMessage(request) {
   });
 }
 
-async function handleWhatsAppMessage(request) {
+async function handleWhatsAppMessage(request, env) {
   const payload = await readJson(request);
   const normalized = normalizeWhatsAppPayload(payload);
-  const result = handleNormalizedMessage(normalized);
+  const result = await handleNormalizedMessage(normalized, { store: getStore(env) });
 
   if (result.ignored) {
     return jsonResponse(result);
@@ -77,10 +82,10 @@ async function handleWhatsAppMessage(request) {
   });
 }
 
-async function handleInstagramMessage(request) {
+async function handleInstagramMessage(request, env) {
   const payload = await readJson(request);
   const normalized = normalizeInstagramPayload(payload);
-  const result = handleNormalizedMessage(normalized);
+  const result = await handleNormalizedMessage(normalized, { store: getStore(env) });
 
   if (result.ignored) {
     return jsonResponse(result);
@@ -114,15 +119,15 @@ async function handleWorkerRequest(request, env = {}) {
   }
 
   if (request.method === "POST" && url.pathname === "/webhook/test-message") {
-    return handleTestMessage(request);
+    return handleTestMessage(request, env);
   }
 
   if (request.method === "POST" && url.pathname === "/webhook/whatsapp") {
-    return handleWhatsAppMessage(request);
+    return handleWhatsAppMessage(request, env);
   }
 
   if (request.method === "POST" && url.pathname === "/webhook/instagram") {
-    return handleInstagramMessage(request);
+    return handleInstagramMessage(request, env);
   }
 
   return jsonResponse(

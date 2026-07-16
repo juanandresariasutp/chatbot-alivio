@@ -14,6 +14,7 @@ node tests/run-conversation-tests.js
 
 ```bash
 node tests/run-conversation-store-tests.js
+node tests/run-d1-store-tests.js
 ```
 
 ## Ejecutar prueba HTTP del webhook local
