@@ -34,6 +34,7 @@ No se han configurado credenciales ni integraciones. Los campos marcados como `P
 22. [Estado actual del MVP](docs/22-estado-actual-mvp.md)
 23. [Deployment en Cloudflare Workers](docs/23-deployment-cloudflare.md)
 24. [Configuración de Wrangler](docs/24-configuracion-wrangler.md)
+25. [Evidencias Cloudflare](docs/25-evidencias-cloudflare.md)
 
 ## Cómo completar el Día 1
 
