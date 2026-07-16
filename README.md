@@ -31,6 +31,7 @@ No se han configurado credenciales ni integraciones. Los campos marcados como `P
 19. [Manual de mantenimiento](docs/19-manual-mantenimiento.md)
 20. [Guía de entrega del MVP](docs/20-guia-entrega-mvp.md)
 21. [Backlog de mejoras](docs/21-backlog-mejoras.md)
+22. [Estado actual del MVP](docs/22-estado-actual-mvp.md)
 
 ## Cómo completar el Día 1
 

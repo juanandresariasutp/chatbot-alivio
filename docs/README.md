@@ -23,6 +23,7 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 19. Documentar mantenimiento.
 20. Preparar guía de entrega del MVP.
 21. Consolidar backlog de mejoras.
+22. Registrar estado actual del MVP.
 
 ## Índice
 
@@ -47,6 +48,7 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 - [Manual de mantenimiento](19-manual-mantenimiento.md)
 - [Guía de entrega del MVP](20-guia-entrega-mvp.md)
 - [Backlog de mejoras](21-backlog-mejoras.md)
+- [Estado actual del MVP](22-estado-actual-mvp.md)
 
 ## Convenciones
 
