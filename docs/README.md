@@ -15,6 +15,8 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 11. Definir normalización y clasificación inicial.
 12. Probar webhook local simulado.
 13. Preparar integración de WhatsApp.
+14. Guiar configuración de Meta y WhatsApp.
+15. Registrar evidencias de pruebas de WhatsApp.
 
 ## Índice
 
@@ -31,6 +33,8 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 - [Normalización y clasificación](11-normalizacion-y-clasificacion.md)
 - [Webhook de prueba local](12-webhook-prueba-local.md)
 - [Integración con WhatsApp](13-integracion-whatsapp.md)
+- [Checklist Meta y WhatsApp](14-checklist-meta-whatsapp.md)
+- [Evidencias de pruebas WhatsApp](15-evidencias-whatsapp.md)
 
 ## Convenciones
 

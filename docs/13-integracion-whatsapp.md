@@ -89,3 +89,8 @@ npm test
 - [ ] Probar con usuario autorizado.
 - [ ] Verificar que no existan respuestas duplicadas.
 - [ ] Documentar evidencias de pruebas.
+
+## Documentos relacionados
+
+- [Checklist Meta y WhatsApp](14-checklist-meta-whatsapp.md)
+- [Evidencias de pruebas WhatsApp](15-evidencias-whatsapp.md)

@@ -23,6 +23,8 @@ No se han configurado credenciales ni integraciones. Los campos marcados como `P
 11. [Normalización y clasificación](docs/11-normalizacion-y-clasificacion.md)
 12. [Webhook de prueba local](docs/12-webhook-prueba-local.md)
 13. [Integración con WhatsApp](docs/13-integracion-whatsapp.md)
+14. [Checklist Meta y WhatsApp](docs/14-checklist-meta-whatsapp.md)
+15. [Evidencias de pruebas WhatsApp](docs/15-evidencias-whatsapp.md)
 
 ## Cómo completar el Día 1
 

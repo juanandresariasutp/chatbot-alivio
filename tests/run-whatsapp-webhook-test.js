@@ -116,6 +116,14 @@ async function main() {
     assert.equal(verifyResponse.statusCode, 200);
     assert.equal(verifyResponse.text, "challenge_123");
 
+    const invalidVerifyResponse = await requestJson({
+      method: "GET",
+      requestPath:
+        "/webhook/whatsapp?hub.mode=subscribe&hub.verify_token=wrong_token&hub.challenge=challenge_123"
+    });
+    assert.equal(invalidVerifyResponse.statusCode, 403);
+    assert.equal(invalidVerifyResponse.body.error, "Webhook verification failed");
+
     const messagePayload = JSON.parse(fs.readFileSync(messagePayloadPath, "utf8"));
     const messageResponse = await requestJson({
       method: "POST",
