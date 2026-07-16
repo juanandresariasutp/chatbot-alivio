@@ -31,14 +31,14 @@
 | `WHATSAPP_PHONE_NUMBER_ID` | Pendiente | `.env` local o gestor de secretos |
 | `WHATSAPP_BUSINESS_ACCOUNT_ID` | Pendiente | `.env` local o gestor de secretos |
 | `WHATSAPP_ACCESS_TOKEN` | Pendiente | Gestor de secretos |
-| `WEBHOOK_VERIFY_TOKEN` | Pendiente | `.env` local y configuración de Meta |
-| URL pública HTTPS del webhook | Pendiente | Documentación interna |
+| `WEBHOOK_VERIFY_TOKEN` | Verificado en Cloudflare | Secreto de Cloudflare y configuración de Meta |
+| URL pública HTTPS del webhook | Verificado | `https://chatbot.alivio-360boy.workers.dev/webhook/whatsapp` |
 
 ## 4. Configuración del webhook
 
-- [ ] Definir URL pública HTTPS.
-- [ ] Confirmar que la URL responde `GET /health`.
-- [ ] Configurar callback URL con ruta `/webhook/whatsapp`.
+- [x] Definir URL pública HTTPS.
+- [x] Confirmar que la URL responde `GET /health`.
+- [x] Configurar callback URL con ruta `/webhook/whatsapp`.
 - [ ] Configurar el mismo `WEBHOOK_VERIFY_TOKEN` en Meta y en el entorno del servidor.
 - [ ] Verificar el webhook desde el panel de Meta.
 - [ ] Suscribir el campo/evento `messages`.

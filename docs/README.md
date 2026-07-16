@@ -27,6 +27,7 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 23. Preparar deployment en Cloudflare Workers.
 24. Preparar configuración de Wrangler.
 25. Registrar evidencias Cloudflare.
+26. Preparar configuración Meta para producción.
 
 ## Índice
 
@@ -55,6 +56,7 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 - [Deployment en Cloudflare Workers](23-deployment-cloudflare.md)
 - [Configuración de Wrangler](24-configuracion-wrangler.md)
 - [Evidencias Cloudflare](25-evidencias-cloudflare.md)
+- [Configuración Meta para producción](26-configuracion-meta-produccion.md)
 
 ## Convenciones
 

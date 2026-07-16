@@ -13,6 +13,12 @@ Preparar la conexión de Instagram Messaging con la lógica central del chatbot.
 | GET | `/webhook/instagram` | Verificación del webhook por Meta |
 | POST | `/webhook/instagram` | Recepción de eventos de Instagram |
 
+URL pública para Meta:
+
+```text
+https://chatbot.alivio-360boy.workers.dev/webhook/instagram
+```
+
 ## Variables requeridas
 
 | Variable | Uso |
