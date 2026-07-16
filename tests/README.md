@@ -10,6 +10,12 @@ No se deben usar conversaciones ni datos personales reales.
 node tests/run-conversation-tests.js
 ```
 
+## Ejecutar pruebas de persistencia y handoff
+
+```bash
+node tests/run-conversation-store-tests.js
+```
+
 ## Ejecutar prueba HTTP del webhook local
 
 ```bash

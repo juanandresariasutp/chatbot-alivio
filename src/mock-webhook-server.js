@@ -1,6 +1,5 @@
 const http = require("node:http");
-const { processPayload } = require("./chatbot-rules");
-const { getResponse } = require("./responses");
+const { defaultStore, handleNormalizedMessage } = require("./message-handler");
 const { normalizeWhatsAppPayload } = require("./whatsapp-normalizer");
 const { sendWhatsAppTextMessage } = require("./whatsapp-client");
 const { normalizeInstagramPayload } = require("./instagram-normalizer");
@@ -49,6 +48,13 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  if (req.method === "GET" && url.pathname === "/conversations") {
+    sendJson(res, 200, {
+      conversations: defaultStore.listConversations()
+    });
+    return;
+  }
+
   if (req.method === "GET" && url.pathname === "/webhook/whatsapp") {
     const mode = url.searchParams.get("hub.mode");
     const token = url.searchParams.get("hub.verify_token");
@@ -93,19 +99,24 @@ const server = http.createServer(async (req, res) => {
         return;
       }
 
-      const result = processPayload(normalized);
-      const responseText = getResponse(result.classification.response_id);
+      const result = handleNormalizedMessage(normalized);
+
+      if (result.ignored) {
+        sendJson(res, 200, result);
+        return;
+      }
+
       const reply = {
         channel: "whatsapp",
-        external_user_id: result.normalized.external_user_id,
-        text: responseText,
+        external_user_id: result.reply.external_user_id,
+        text: result.reply.text,
         sent: false
       };
 
       if (SEND_WHATSAPP_REPLIES) {
         await sendWhatsAppTextMessage({
-          to: result.normalized.external_user_id,
-          text: responseText
+          to: result.reply.external_user_id,
+          text: result.reply.text
         });
         reply.sent = true;
       }
@@ -137,19 +148,24 @@ const server = http.createServer(async (req, res) => {
         return;
       }
 
-      const result = processPayload(normalized);
-      const responseText = getResponse(result.classification.response_id);
+      const result = handleNormalizedMessage(normalized);
+
+      if (result.ignored) {
+        sendJson(res, 200, result);
+        return;
+      }
+
       const reply = {
         channel: "instagram",
-        external_user_id: result.normalized.external_user_id,
-        text: responseText,
+        external_user_id: result.reply.external_user_id,
+        text: result.reply.text,
         sent: false
       };
 
       if (SEND_INSTAGRAM_REPLIES) {
         await sendInstagramTextMessage({
-          recipientId: result.normalized.external_user_id,
-          text: responseText
+          recipientId: result.reply.external_user_id,
+          text: result.reply.text
         });
         reply.sent = true;
       }
@@ -172,6 +188,7 @@ const server = http.createServer(async (req, res) => {
       error: "Not found",
       available_routes: [
         "GET /health",
+        "GET /conversations",
         "POST /webhook/test-message",
         "GET /webhook/whatsapp",
         "POST /webhook/whatsapp",
@@ -184,15 +201,13 @@ const server = http.createServer(async (req, res) => {
 
   try {
     const payload = await readBody(req);
-    const result = processPayload(payload);
-    const responseText = getResponse(result.classification.response_id);
+    const result = handleNormalizedMessage(payload);
 
     sendJson(res, 200, {
       ...result,
       reply: {
-        channel: result.normalized.channel,
-        external_user_id: result.normalized.external_user_id,
-        text: responseText
+        ...result.reply,
+        sent: false
       }
     });
   } catch (error) {
@@ -206,6 +221,7 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, () => {
   console.log(`Mock webhook server running on http://localhost:${PORT}`);
   console.log(`Health check: http://localhost:${PORT}/health`);
+  console.log(`Conversations: http://localhost:${PORT}/conversations`);
   console.log(`Test webhook: POST http://localhost:${PORT}/webhook/test-message`);
   console.log(`WhatsApp verify: GET http://localhost:${PORT}/webhook/whatsapp`);
   console.log(`WhatsApp webhook: POST http://localhost:${PORT}/webhook/whatsapp`);

@@ -4,7 +4,7 @@ Proyecto para diseñar e implementar un chatbot de atención al cliente, inicial
 
 ## Estado
 
-**Fase actual:** Día 5 — integración con Instagram.
+**Fase actual:** Día 6 — persistencia, handoff y pruebas integrales.
 
 No se han configurado credenciales ni integraciones. Los campos marcados como `Pendiente` deben completarse y aprobarse con el cliente antes de desarrollar o publicar el bot.
 
@@ -26,6 +26,8 @@ No se han configurado credenciales ni integraciones. Los campos marcados como `P
 14. [Checklist Meta y WhatsApp](docs/14-checklist-meta-whatsapp.md)
 15. [Evidencias de pruebas WhatsApp](docs/15-evidencias-whatsapp.md)
 16. [Integración con Instagram](docs/16-integracion-instagram.md)
+17. [Persistencia y handoff](docs/17-persistencia-y-handoff.md)
+18. [Pruebas integrales](docs/18-pruebas-integrales.md)
 
 ## Cómo completar el Día 1
 
@@ -70,4 +72,4 @@ npm start
 
 ## Siguiente hito
 
-Una vez validada la integración simulada de Instagram, el siguiente paso es configurar la URL pública HTTPS en Meta y probar con cuentas autorizadas.
+Una vez validada la persistencia local y el handoff, el siguiente paso es elegir almacenamiento durable y conectar notificaciones reales al asesor.

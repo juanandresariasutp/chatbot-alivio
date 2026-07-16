@@ -18,6 +18,8 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 14. Guiar configuración de Meta y WhatsApp.
 15. Registrar evidencias de pruebas de WhatsApp.
 16. Preparar integración de Instagram.
+17. Implementar persistencia local y handoff.
+18. Definir pruebas integrales.
 
 ## Índice
 
@@ -37,6 +39,8 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 - [Checklist Meta y WhatsApp](14-checklist-meta-whatsapp.md)
 - [Evidencias de pruebas WhatsApp](15-evidencias-whatsapp.md)
 - [Integración con Instagram](16-integracion-instagram.md)
+- [Persistencia y handoff](17-persistencia-y-handoff.md)
+- [Pruebas integrales](18-pruebas-integrales.md)
 
 ## Convenciones
 

@@ -11,6 +11,9 @@ Esta carpeta contiene componentes propios del chatbot que no pertenecen directam
 - `whatsapp-client.js`: prepara y envía respuestas de texto por WhatsApp Cloud API cuando existan credenciales.
 - `instagram-normalizer.js`: convierte eventos de Instagram Messaging al formato común del bot.
 - `instagram-client.js`: prepara y envía respuestas de texto por Instagram Messaging API cuando existan credenciales.
+- `conversation-store.js`: persistencia local en memoria para pruebas.
+- `handoff.js`: reglas de transferencia a asesor.
+- `message-handler.js`: orquesta normalización, respuesta, persistencia y handoff.
 
 ## Uso
 
