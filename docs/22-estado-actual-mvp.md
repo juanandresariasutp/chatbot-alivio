@@ -68,7 +68,13 @@ La suite cubre:
 - [ ] Obtener `WHATSAPP_BUSINESS_ACCOUNT_ID`.
 - [ ] Obtener `INSTAGRAM_ACCOUNT_ID`.
 - [ ] Crear tokens seguros desde el negocio del cliente.
-- [ ] Definir hosting y URL pública HTTPS.
+- [x] Definir hosting y URL pública HTTPS.
+- [x] Crear Worker en Cloudflare.
+- [x] Crear base D1.
+- [x] Aplicar esquema inicial D1.
+- [x] Desplegar Worker desde el repositorio.
+- [x] Verificar `/health` público.
+- [x] Configurar `WEBHOOK_VERIFY_TOKEN` como secreto.
 - [ ] Configurar webhooks reales en Meta.
 - [ ] Probar con usuarios autorizados.
 

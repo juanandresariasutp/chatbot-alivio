@@ -15,6 +15,7 @@ Esta carpeta contiene componentes propios del chatbot que no pertenecen directam
 - `handoff.js`: reglas de transferencia a asesor.
 - `message-handler.js`: orquesta normalización, respuesta, persistencia y handoff.
 - `worker.js`: handler estilo Fetch API preparado para Cloudflare Workers.
+- `worker-entry.mjs`: entrada ES Module requerida por Cloudflare para usar bindings como D1.
 - `d1-schema.sql`: esquema inicial para persistencia durable en Cloudflare D1.
 
 ## Uso

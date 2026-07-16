@@ -141,6 +141,14 @@ async function handleWorkerRequest(request, env = {}) {
   );
 }
 
+async function fetch(request, env) {
+  return handleWorkerRequest(request, env);
+}
+
 module.exports = {
+  fetch,
+  default: {
+    fetch
+  },
   handleWorkerRequest
 };

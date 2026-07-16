@@ -2,6 +2,30 @@
 
 > Estado: plantilla preparada. No desplegar hasta tener cuenta de Cloudflare del cliente.
 
+## Estado actual
+
+- Worker creado en Cloudflare.
+- Base D1 `chatbot-alivio` creada.
+- `wrangler.toml` local creado a partir de `wrangler.example.toml`.
+- `wrangler.toml` está ignorado por Git.
+- Esquema `src/d1-schema.sql` aplicado correctamente en D1 remoto.
+- Worker desplegado correctamente desde el repositorio.
+- `WEBHOOK_VERIFY_TOKEN` configurado como secreto de Cloudflare.
+
+URL actual del Worker:
+
+```text
+https://chatbot.alivio-360boy.workers.dev
+```
+
+Validación realizada:
+
+```text
+GET /health -> 200
+GET /webhook/whatsapp con token correcto -> challenge
+GET /webhook/instagram con token incorrecto -> 403
+```
+
 ## Objetivo
 
 Preparar la configuración necesaria para desplegar el Worker sin guardar datos específicos de la cuenta en Git.
@@ -65,6 +89,18 @@ Para aplicar el esquema:
 
 ```bash
 npx wrangler d1 execute chatbot-alivio --file=src/d1-schema.sql
+```
+
+Para aplicarlo en la base remota:
+
+```bash
+npx wrangler d1 execute chatbot-alivio --remote --file=src/d1-schema.sql --yes
+```
+
+Para verificar tablas:
+
+```bash
+npx wrangler d1 execute chatbot-alivio --remote --command="SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;" --json
 ```
 
 ## Desarrollo local futuro

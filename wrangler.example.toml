@@ -1,5 +1,5 @@
-name = "chatbot-alivio"
-main = "src/worker.js"
+name = "chatbot"
+main = "src/worker-entry.mjs"
 compatibility_date = "2026-07-16"
 
 # Copy this file to wrangler.toml when the Cloudflare account is ready.

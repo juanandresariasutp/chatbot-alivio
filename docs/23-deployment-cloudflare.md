@@ -1,6 +1,6 @@
 # Deployment en Cloudflare Workers
 
-> Estado: preparación técnica. No se ha desplegado todavía.
+> Estado: Worker desplegado en Cloudflare con D1 creado y esquema aplicado.
 
 ## Objetivo
 
@@ -20,9 +20,24 @@ Cloudflare Workers ofrece una capa gratuita suficiente para validar un MVP peque
 | Archivo | Uso |
 | --- | --- |
 | `src/worker.js` | Handler compatible con estilo Fetch API |
+| `src/worker-entry.mjs` | Entrada ES Module requerida para bindings D1 |
 | `src/d1-schema.sql` | Esquema inicial para Cloudflare D1 |
 | `tests/run-worker-tests.js` | Pruebas locales del handler Worker |
 | `wrangler.example.toml` | Plantilla de configuración de Cloudflare |
+
+## URL pública
+
+```text
+https://chatbot.alivio-360boy.workers.dev
+```
+
+Endpoints verificados:
+
+| Ruta | Resultado |
+| --- | --- |
+| `GET /health` | `200` |
+| `GET /webhook/whatsapp` con token correcto | devuelve `hub.challenge` |
+| `GET /webhook/instagram` con token incorrecto | `403` |
 
 ## Variables necesarias
 
@@ -49,15 +64,10 @@ Puede generar costos si:
 
 ## Pasos futuros de despliegue
 
-1. Crear cuenta de Cloudflare o usar una cuenta del cliente.
-2. Instalar Wrangler.
-3. Crear proyecto Worker.
-4. Crear base D1.
-5. Ejecutar `src/d1-schema.sql`.
-6. Configurar variables secretas.
-7. Desplegar Worker.
-8. Configurar URL pública en Meta.
-9. Probar webhooks con usuarios autorizados.
+1. Configurar URL pública en Meta.
+2. Probar webhooks con usuarios autorizados.
+3. Configurar tokens reales de WhatsApp e Instagram como secretos.
+4. Activar envío real solo después de aprobar pruebas.
 
 Ver detalle en [Configuración de Wrangler](24-configuracion-wrangler.md).
 
