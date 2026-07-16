@@ -28,3 +28,7 @@ data/
 # Temporary n8n artifacts
 workflows/private/
 
+# Cloudflare local configuration
+wrangler.toml
+.wrangler/
+

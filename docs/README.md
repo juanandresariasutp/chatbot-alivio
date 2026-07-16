@@ -25,6 +25,7 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 21. Consolidar backlog de mejoras.
 22. Registrar estado actual del MVP.
 23. Preparar deployment en Cloudflare Workers.
+24. Preparar configuración de Wrangler.
 
 ## Índice
 
@@ -51,6 +52,7 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 - [Backlog de mejoras](21-backlog-mejoras.md)
 - [Estado actual del MVP](22-estado-actual-mvp.md)
 - [Deployment en Cloudflare Workers](23-deployment-cloudflare.md)
+- [Configuración de Wrangler](24-configuracion-wrangler.md)
 
 ## Convenciones
 

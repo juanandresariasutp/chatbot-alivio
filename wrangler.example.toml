@@ -1,0 +1,16 @@
+name = "chatbot-alivio"
+main = "src/worker.js"
+compatibility_date = "2026-07-16"
+
+# Copy this file to wrangler.toml when the Cloudflare account is ready.
+# Do not commit account-specific IDs or secrets.
+
+[vars]
+META_GRAPH_API_VERSION = "v20.0"
+SEND_WHATSAPP_REPLIES = "false"
+SEND_INSTAGRAM_REPLIES = "false"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "chatbot-alivio"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"

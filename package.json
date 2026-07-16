@@ -13,7 +13,9 @@
     "test:whatsapp-webhook": "node tests/run-whatsapp-webhook-test.js",
     "test:instagram": "node tests/run-instagram-tests.js",
     "test:instagram-webhook": "node tests/run-instagram-webhook-test.js",
-    "test:worker": "node tests/run-worker-tests.js"
+    "test:worker": "node tests/run-worker-tests.js",
+    "cf:dev": "wrangler dev",
+    "cf:deploy": "wrangler deploy"
   },
   "engines": {
     "node": ">=18"

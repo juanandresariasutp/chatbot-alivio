@@ -22,6 +22,7 @@ Cloudflare Workers ofrece una capa gratuita suficiente para validar un MVP peque
 | `src/worker.js` | Handler compatible con estilo Fetch API |
 | `src/d1-schema.sql` | Esquema inicial para Cloudflare D1 |
 | `tests/run-worker-tests.js` | Pruebas locales del handler Worker |
+| `wrangler.example.toml` | Plantilla de configuración de Cloudflare |
 
 ## Variables necesarias
 
@@ -57,6 +58,8 @@ Puede generar costos si:
 7. Desplegar Worker.
 8. Configurar URL pública en Meta.
 9. Probar webhooks con usuarios autorizados.
+
+Ver detalle en [Configuración de Wrangler](24-configuracion-wrangler.md).
 
 ## Regla de seguridad
 
