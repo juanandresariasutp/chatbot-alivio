@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "1234567890",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "573001112233",
+              "phone_number_id": "111222333444555"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Usuario de prueba"
+                },
+                "wa_id": "573009998877"
+              }
+            ],
+            "messages": [
+              {
+                "from": "573009998877",
+                "id": "wamid.test.001",
+                "timestamp": "1784210400",
+                "text": {
+                  "body": "Hola, quiero una cita"
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}
