@@ -1,0 +1,10 @@
+{
+  "event_id": "evt_test_agendamiento_001",
+  "channel": "test",
+  "external_user_id": "user_test_001",
+  "customer_name": "Usuario de prueba",
+  "message_type": "text",
+  "message_text": "Hola, quiero una cita para dolor de espalda",
+  "timestamp": "2026-07-16T09:00:00-05:00",
+  "raw": {}
+}

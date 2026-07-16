@@ -1,0 +1,10 @@
+{
+  "event_id": "evt_test_urgencia_001",
+  "channel": "test",
+  "external_user_id": "user_test_003",
+  "customer_name": "Usuario de prueba",
+  "message_type": "text",
+  "message_text": "Es una urgencia, tengo dolor muy fuerte y no puedo caminar",
+  "timestamp": "2026-07-16T09:10:00-05:00",
+  "raw": {}
+}

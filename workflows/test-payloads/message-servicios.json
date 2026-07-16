@@ -1,0 +1,10 @@
+{
+  "event_id": "evt_test_servicios_001",
+  "channel": "test",
+  "external_user_id": "user_test_002",
+  "customer_name": "Usuario de prueba",
+  "message_type": "text",
+  "message_text": "Que servicios ofrecen",
+  "timestamp": "2026-07-16T09:05:00-05:00",
+  "raw": {}
+}
