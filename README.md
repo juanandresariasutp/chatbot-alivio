@@ -4,7 +4,7 @@ Proyecto para diseñar e implementar un chatbot de atención al cliente, inicial
 
 ## Estado
 
-**Fase actual:** Día 6 — persistencia, handoff y pruebas integrales.
+**Fase actual:** Día 7 — documentación, entrega y backlog.
 
 No se han configurado credenciales ni integraciones. Los campos marcados como `Pendiente` deben completarse y aprobarse con el cliente antes de desarrollar o publicar el bot.
 
@@ -28,6 +28,9 @@ No se han configurado credenciales ni integraciones. Los campos marcados como `P
 16. [Integración con Instagram](docs/16-integracion-instagram.md)
 17. [Persistencia y handoff](docs/17-persistencia-y-handoff.md)
 18. [Pruebas integrales](docs/18-pruebas-integrales.md)
+19. [Manual de mantenimiento](docs/19-manual-mantenimiento.md)
+20. [Guía de entrega del MVP](docs/20-guia-entrega-mvp.md)
+21. [Backlog de mejoras](docs/21-backlog-mejoras.md)
 
 ## Cómo completar el Día 1
 
@@ -72,4 +75,4 @@ npm start
 
 ## Siguiente hito
 
-Una vez validada la persistencia local y el handoff, el siguiente paso es elegir almacenamiento durable y conectar notificaciones reales al asesor.
+Una vez aprobada la entrega del MVP, el siguiente paso es resolver accesos de Meta, hosting, almacenamiento durable y notificaciones reales al asesor.

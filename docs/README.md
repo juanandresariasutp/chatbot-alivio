@@ -20,6 +20,9 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 16. Preparar integración de Instagram.
 17. Implementar persistencia local y handoff.
 18. Definir pruebas integrales.
+19. Documentar mantenimiento.
+20. Preparar guía de entrega del MVP.
+21. Consolidar backlog de mejoras.
 
 ## Índice
 
@@ -41,6 +44,9 @@ Los documentos están numerados en el orden recomendado para el levantamiento:
 - [Integración con Instagram](16-integracion-instagram.md)
 - [Persistencia y handoff](17-persistencia-y-handoff.md)
 - [Pruebas integrales](18-pruebas-integrales.md)
+- [Manual de mantenimiento](19-manual-mantenimiento.md)
+- [Guía de entrega del MVP](20-guia-entrega-mvp.md)
+- [Backlog de mejoras](21-backlog-mejoras.md)
 
 ## Convenciones
 
