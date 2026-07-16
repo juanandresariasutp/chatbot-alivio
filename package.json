@@ -5,14 +5,15 @@
   "description": "MVP de chatbot para ALIVIO 360.",
   "scripts": {
     "start": "node src/mock-webhook-server.js",
-    "test": "node tests/run-conversation-tests.js && node tests/run-conversation-store-tests.js && node tests/run-mock-webhook-test.js && node tests/run-whatsapp-tests.js && node tests/run-whatsapp-webhook-test.js && node tests/run-instagram-tests.js && node tests/run-instagram-webhook-test.js",
+    "test": "node tests/run-conversation-tests.js && node tests/run-conversation-store-tests.js && node tests/run-mock-webhook-test.js && node tests/run-whatsapp-tests.js && node tests/run-whatsapp-webhook-test.js && node tests/run-instagram-tests.js && node tests/run-instagram-webhook-test.js && node tests/run-worker-tests.js",
     "test:rules": "node tests/run-conversation-tests.js",
     "test:store": "node tests/run-conversation-store-tests.js",
     "test:webhook": "node tests/run-mock-webhook-test.js",
     "test:whatsapp": "node tests/run-whatsapp-tests.js",
     "test:whatsapp-webhook": "node tests/run-whatsapp-webhook-test.js",
     "test:instagram": "node tests/run-instagram-tests.js",
-    "test:instagram-webhook": "node tests/run-instagram-webhook-test.js"
+    "test:instagram-webhook": "node tests/run-instagram-webhook-test.js",
+    "test:worker": "node tests/run-worker-tests.js"
   },
   "engines": {
     "node": ">=18"

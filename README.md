@@ -32,6 +32,7 @@ No se han configurado credenciales ni integraciones. Los campos marcados como `P
 20. [Guía de entrega del MVP](docs/20-guia-entrega-mvp.md)
 21. [Backlog de mejoras](docs/21-backlog-mejoras.md)
 22. [Estado actual del MVP](docs/22-estado-actual-mvp.md)
+23. [Deployment en Cloudflare Workers](docs/23-deployment-cloudflare.md)
 
 ## Cómo completar el Día 1
 

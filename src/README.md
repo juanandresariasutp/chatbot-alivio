@@ -14,6 +14,8 @@ Esta carpeta contiene componentes propios del chatbot que no pertenecen directam
 - `conversation-store.js`: persistencia local en memoria para pruebas.
 - `handoff.js`: reglas de transferencia a asesor.
 - `message-handler.js`: orquesta normalización, respuesta, persistencia y handoff.
+- `worker.js`: handler estilo Fetch API preparado para Cloudflare Workers.
+- `d1-schema.sql`: esquema inicial para persistencia durable en Cloudflare D1.
 
 ## Uso
 
