@@ -2,6 +2,8 @@ const { handleNormalizedMessage } = require("./message-handler");
 const { normalizeWhatsAppPayload } = require("./whatsapp-normalizer");
 const { normalizeInstagramPayload } = require("./instagram-normalizer");
 const { D1ConversationStore } = require("./d1-conversation-store");
+const { sendWhatsAppTextMessage } = require("./whatsapp-client");
+const { sendInstagramTextMessage } = require("./instagram-client");
 
 function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body, null, 2), {
@@ -49,6 +51,84 @@ function getStore(env = {}) {
   return env.DB ? new D1ConversationStore(env.DB) : undefined;
 }
 
+function isEnabled(value) {
+  return value === true || value === "true" || value === "1";
+}
+
+function getGraphApiVersion(env = {}) {
+  return env.META_GRAPH_API_VERSION || "v20.0";
+}
+
+async function sendReplyIfEnabled({ env = {}, normalized, reply, store }) {
+  if (!reply || !normalized || !normalized.external_user_id) {
+    return {
+      sent: false,
+      reason: "missing_reply"
+    };
+  }
+
+  try {
+    if (normalized.channel === "whatsapp") {
+      if (!isEnabled(env.SEND_WHATSAPP_REPLIES)) {
+        return {
+          sent: false,
+          reason: "whatsapp_replies_disabled"
+        };
+      }
+
+      const apiResponse = await sendWhatsAppTextMessage({
+        to: normalized.external_user_id,
+        text: reply.text,
+        accessToken: env.WHATSAPP_ACCESS_TOKEN,
+        phoneNumberId: env.WHATSAPP_PHONE_NUMBER_ID,
+        graphApiVersion: getGraphApiVersion(env)
+      });
+
+      return {
+        sent: true,
+        provider: "whatsapp",
+        provider_response: apiResponse
+      };
+    }
+
+    if (normalized.channel === "instagram") {
+      if (!isEnabled(env.SEND_INSTAGRAM_REPLIES)) {
+        return {
+          sent: false,
+          reason: "instagram_replies_disabled"
+        };
+      }
+
+      const apiResponse = await sendInstagramTextMessage({
+        recipientId: normalized.external_user_id,
+        text: reply.text,
+        accessToken: env.INSTAGRAM_ACCESS_TOKEN,
+        graphApiVersion: getGraphApiVersion(env)
+      });
+
+      return {
+        sent: true,
+        provider: "instagram",
+        provider_response: apiResponse
+      };
+    }
+
+    return {
+      sent: false,
+      reason: "unsupported_channel"
+    };
+  } catch (error) {
+    if (store && typeof store.addError === "function") {
+      await store.addError(normalized, error);
+    }
+
+    return {
+      sent: false,
+      error: error.message || String(error)
+    };
+  }
+}
+
 async function handleTestMessage(request, env) {
   const payload = await readJson(request);
   const result = await handleNormalizedMessage(payload, { store: getStore(env) });
@@ -67,17 +147,25 @@ async function handleTestMessage(request, env) {
 async function handleWhatsAppMessage(request, env) {
   const payload = await readJson(request);
   const normalized = normalizeWhatsAppPayload(payload);
-  const result = await handleNormalizedMessage(normalized, { store: getStore(env) });
+  const store = getStore(env);
+  const result = await handleNormalizedMessage(normalized, { store });
 
   if (result.ignored) {
     return jsonResponse(result);
   }
 
+  const delivery = await sendReplyIfEnabled({
+    env,
+    normalized,
+    reply: result.reply,
+    store
+  });
+
   return jsonResponse({
     ...result,
     reply: {
       ...result.reply,
-      sent: false
+      ...delivery
     }
   });
 }
@@ -85,17 +173,25 @@ async function handleWhatsAppMessage(request, env) {
 async function handleInstagramMessage(request, env) {
   const payload = await readJson(request);
   const normalized = normalizeInstagramPayload(payload);
-  const result = await handleNormalizedMessage(normalized, { store: getStore(env) });
+  const store = getStore(env);
+  const result = await handleNormalizedMessage(normalized, { store });
 
   if (result.ignored) {
     return jsonResponse(result);
   }
 
+  const delivery = await sendReplyIfEnabled({
+    env,
+    normalized,
+    reply: result.reply,
+    store
+  });
+
   return jsonResponse({
     ...result,
     reply: {
       ...result.reply,
-      sent: false
+      ...delivery
     }
   });
 }
@@ -155,5 +251,6 @@ module.exports = {
   default: {
     fetch
   },
-  handleWorkerRequest
+  handleWorkerRequest,
+  sendReplyIfEnabled
 };
