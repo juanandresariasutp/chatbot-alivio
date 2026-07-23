@@ -1,4 +1,8 @@
-const DEFAULT_GRAPH_API_VERSION = process.env.META_GRAPH_API_VERSION || "v20.0";
+function getProcessEnv(name) {
+  return typeof process !== "undefined" ? process.env?.[name] : undefined;
+}
+
+const DEFAULT_GRAPH_API_VERSION = getProcessEnv("META_GRAPH_API_VERSION") || "v20.0";
 
 function buildWhatsAppTextMessage({ to, text }) {
   return {
@@ -16,8 +20,8 @@ function buildWhatsAppTextMessage({ to, text }) {
 async function sendWhatsAppTextMessage({
   to,
   text,
-  accessToken = process.env.WHATSAPP_ACCESS_TOKEN,
-  phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID,
+  accessToken = getProcessEnv("WHATSAPP_ACCESS_TOKEN"),
+  phoneNumberId = getProcessEnv("WHATSAPP_PHONE_NUMBER_ID"),
   graphApiVersion = DEFAULT_GRAPH_API_VERSION,
   fetchImpl = globalThis.fetch
 }) {

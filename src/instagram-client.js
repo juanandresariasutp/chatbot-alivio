@@ -1,4 +1,8 @@
-const DEFAULT_GRAPH_API_VERSION = process.env.META_GRAPH_API_VERSION || "v20.0";
+function getProcessEnv(name) {
+  return typeof process !== "undefined" ? process.env?.[name] : undefined;
+}
+
+const DEFAULT_GRAPH_API_VERSION = getProcessEnv("META_GRAPH_API_VERSION") || "v20.0";
 
 function buildInstagramTextMessage({ recipientId, text }) {
   return {
@@ -14,7 +18,7 @@ function buildInstagramTextMessage({ recipientId, text }) {
 async function sendInstagramTextMessage({
   recipientId,
   text,
-  accessToken = process.env.INSTAGRAM_ACCESS_TOKEN,
+  accessToken = getProcessEnv("INSTAGRAM_ACCESS_TOKEN"),
   graphApiVersion = DEFAULT_GRAPH_API_VERSION,
   fetchImpl = globalThis.fetch
 }) {
