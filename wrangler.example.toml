@@ -4,6 +4,8 @@ compatibility_date = "2026-07-16"
 
 # Copy this file to wrangler.toml when the Cloudflare account is ready.
 # Do not commit account-specific IDs or secrets.
+# Optional admin endpoint:
+# npx wrangler secret put ADMIN_API_TOKEN
 
 [vars]
 META_GRAPH_API_VERSION = "v20.0"

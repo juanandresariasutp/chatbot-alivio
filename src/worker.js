@@ -51,6 +51,36 @@ function getStore(env = {}) {
   return env.DB ? new D1ConversationStore(env.DB) : undefined;
 }
 
+function getBearerToken(request) {
+  const authorization = request.headers.get("Authorization") || "";
+  const match = authorization.match(/^Bearer\s+(.+)$/i);
+  return match ? match[1].trim() : null;
+}
+
+async function handleAdminConversations(request, env) {
+  if (!env.ADMIN_API_TOKEN) {
+    return jsonResponse({ error: "Admin API is not configured" }, 503);
+  }
+
+  if (getBearerToken(request) !== env.ADMIN_API_TOKEN) {
+    return jsonResponse({ error: "Unauthorized" }, 401);
+  }
+
+  const store = getStore(env);
+
+  if (!store || typeof store.listConversations !== "function") {
+    return jsonResponse({ error: "Conversation store is not configured" }, 503);
+  }
+
+  const conversations = await store.listConversations();
+
+  return jsonResponse({
+    ok: true,
+    count: conversations.length,
+    conversations
+  });
+}
+
 function isEnabled(value) {
   return value === true || value === "true" || value === "1";
 }
@@ -206,6 +236,10 @@ async function handleWorkerRequest(request, env = {}) {
     });
   }
 
+  if (request.method === "GET" && url.pathname === "/admin/conversations") {
+    return handleAdminConversations(request, env);
+  }
+
   if (request.method === "GET" && url.pathname === "/webhook/whatsapp") {
     return verifyWebhook(url, env);
   }
@@ -231,6 +265,7 @@ async function handleWorkerRequest(request, env = {}) {
       error: "Not found",
       available_routes: [
         "GET /health",
+        "GET /admin/conversations",
         "POST /webhook/test-message",
         "GET /webhook/whatsapp",
         "POST /webhook/whatsapp",

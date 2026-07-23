@@ -21,6 +21,7 @@ esta en revision.
 | `WHATSAPP_PHONE_NUMBER_ID` | Secreto | No aplica | ID del numero de WhatsApp que envia mensajes. |
 | `INSTAGRAM_ACCESS_TOKEN` | Secreto | No aplica | Token de acceso para Instagram Messaging. |
 | `META_GRAPH_API_VERSION` | Variable | `v20.0` | Version de Graph API usada por el bot. |
+| `ADMIN_API_TOKEN` | Secreto | No aplica | Protege endpoints internos de revision. |
 
 ## Requisitos antes de activar WhatsApp
 
@@ -46,6 +47,24 @@ Solo si se activa Instagram:
 ```bash
 npx wrangler secret put INSTAGRAM_ACCESS_TOKEN
 ```
+
+Opcional para revisar conversaciones por API:
+
+```bash
+npx wrangler secret put ADMIN_API_TOKEN
+```
+
+## Revisar conversaciones guardadas
+
+Cuando `ADMIN_API_TOKEN` este configurado, se puede consultar:
+
+```bash
+curl -H "Authorization: Bearer ADMIN_API_TOKEN" \
+  https://chatbot.alivio-360boy.workers.dev/admin/conversations
+```
+
+Este endpoint no debe compartirse con el cliente final ni publicarse en una web.
+Sirve solo para validacion tecnica y soporte durante pruebas.
 
 ## Encender WhatsApp
 

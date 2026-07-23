@@ -31,6 +31,21 @@ async function main() {
   const healthBody = await readJsonResponse(healthResponse);
   assert.equal(healthBody.ok, true);
 
+  const adminNotConfiguredResponse = await handleWorkerRequest(
+    new Request("https://chatbot-alivio.example/admin/conversations"),
+    env
+  );
+  assert.equal(adminNotConfiguredResponse.status, 503);
+
+  const adminUnauthorizedResponse = await handleWorkerRequest(
+    new Request("https://chatbot-alivio.example/admin/conversations"),
+    {
+      ...env,
+      ADMIN_API_TOKEN: "admin_test_token"
+    }
+  );
+  assert.equal(adminUnauthorizedResponse.status, 401);
+
   const verifyResponse = await handleWorkerRequest(
     new Request(
       "https://chatbot-alivio.example/webhook/whatsapp?hub.mode=subscribe&hub.verify_token=worker_test_token&hub.challenge=abc123"
@@ -66,6 +81,23 @@ async function main() {
   assert.equal(whatsappBody.reply.sent, false);
   assert.equal(whatsappBody.reply.reason, "whatsapp_replies_disabled");
   assert.equal(whatsappBody.conversation.messages.length, 2);
+
+  const adminConversationsResponse = await handleWorkerRequest(
+    new Request("https://chatbot-alivio.example/admin/conversations", {
+      headers: {
+        Authorization: "Bearer admin_test_token"
+      }
+    }),
+    {
+      ...env,
+      ADMIN_API_TOKEN: "admin_test_token"
+    }
+  );
+  assert.equal(adminConversationsResponse.status, 200);
+  const adminConversationsBody = await readJsonResponse(adminConversationsResponse);
+  assert.equal(adminConversationsBody.ok, true);
+  assert.equal(adminConversationsBody.count, 1);
+  assert.equal(adminConversationsBody.conversations[0].channel, "whatsapp");
 
   const instagramPayload = readPayload("instagram-message-text.json");
   const instagramResponse = await handleWorkerRequest(
