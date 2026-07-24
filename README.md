@@ -42,6 +42,7 @@ autorice salida a produccion.
 25. [Evidencias Cloudflare](docs/25-evidencias-cloudflare.md)
 26. [Configuracion Meta para produccion](docs/26-configuracion-meta-produccion.md)
 27. [Activacion controlada de respuestas reales](docs/27-activacion-envio-real.md)
+28. [Checklist de pruebas cuando Meta apruebe la empresa](docs/28-checklist-pruebas-meta-aprobado.md)
 
 ## Estructura
 
