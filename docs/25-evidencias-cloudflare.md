@@ -35,6 +35,26 @@ https://chatbot.alivio-360boy.workers.dev
 
 - [x] Conectar el handler del Worker a D1 para persistencia durable real.
 - [x] Verificar escrituras reales en D1 remoto.
+- [x] Configurar `ADMIN_API_TOKEN` como secreto de Cloudflare.
+- [x] Verificar que `GET /admin/conversations` rechaza solicitudes sin token.
+- [x] Verificar que `GET /admin/conversations` devuelve conversaciones con token valido.
 - [ ] Configurar secretos reales de Meta.
 - [ ] Configurar webhooks reales en Meta Developers.
 - [ ] Probar con usuarios autorizados.
+
+## Evidencia adicional 2026-07-23
+
+Endpoint admin protegido:
+
+```text
+GET https://chatbot.alivio-360boy.workers.dev/admin/conversations
+```
+
+Resultados:
+
+- Sin `Authorization: Bearer ...`: `401 Unauthorized`.
+- Con `ADMIN_API_TOKEN` configurado en Cloudflare: `200 OK`.
+- D1 remoto devuelve 1 conversacion de prueba con 2 mensajes.
+
+El token se guardo solo como secreto de Cloudflare y en un archivo local ignorado
+por Git (`.env.admin`). No se versiona ni se documenta el valor real.
